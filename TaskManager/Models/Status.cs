@@ -9,9 +9,9 @@ namespace TaskManager
 {
     public enum Statuses
     {
-        Nowy,
-        [Description("W Realizacji")]
-        wRealizacji,
-        Zakonczony
+        New,
+        [Description("In Progress")]
+        InProgress,
+        Completed
     }
 }

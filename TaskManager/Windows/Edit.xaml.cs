@@ -8,7 +8,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -16,23 +15,30 @@ using System.Windows.Shapes;
 namespace TaskManager.Windows
 {
     /// <summary>
-    /// Interaction logic for Add.xaml
+    /// Interaction logic for Edit.xaml
     /// </summary>
-    public partial class Add : Window
+    public partial class Edit : Window
     {
-        public Add()
+        public Edit(Task selected)
         {
             InitializeComponent();
+            
+
+
+            Description_TextBox.Text = selected.Description;
+
 
             Status_ComboBox.ItemsSource = Enum.GetValues(typeof(Statuses)).Cast<Statuses>();
 
-            Status_ComboBox.SelectedItem = Statuses.New;
-
+            Status_ComboBox.SelectedItem = selected.Status;
 
 
             Priority_ComboBox.ItemsSource = Enum.GetValues(typeof(Priorities)).Cast<Priorities>();
 
-            Priority_ComboBox.SelectedItem = Priorities.Normal;
+            Priority_ComboBox.SelectedItem = selected.Priority;
+
+            DatePicker.SelectedDate = selected.Deadline;
+
         }
 
         private void TextChange(object sender, TextChangedEventArgs e)

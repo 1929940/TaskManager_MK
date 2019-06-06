@@ -8,6 +8,6 @@ namespace TaskManager
 {
 public enum Priorities
     {
-        Wysoki, Normalny, Niski
+        High, Normal, Low
     }   
 }

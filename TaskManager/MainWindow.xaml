@@ -16,7 +16,7 @@
         
         <!-- Row 0-->
 
-        <Label Content="Text Manger" FontSize="36" HorizontalAlignment="Center" 
+        <Label Content="Task Manger" FontSize="36" HorizontalAlignment="Center" 
                Grid.Row="0" Margin="0,0,0,5" />
         
         <!-- Row 1-->
@@ -29,17 +29,21 @@
 
         <ListView Name="Display_ListView"
                   Grid.Row="2" Margin="0,0,0,5">
+            <ListView.Resources>
+                <local:DateConverter x:Key="DateConverterObj"/>
+            </ListView.Resources>
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="Task"
                                         DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Status"
+                                        DisplayMemberBinding="{Binding Status}"/>
                         <GridViewColumn Header="Priority"
                                         DisplayMemberBinding="{Binding Priority}"/>
                         <GridViewColumn Header="Deadline"
-                                        DisplayMemberBinding="{Binding Deadline}"/>
-                        <GridViewColumn Header="Status"
-                                        DisplayMemberBinding="{Binding Status}"/>
+                                        DisplayMemberBinding="{Binding Deadline, StringFormat='yyyy-MM-dd', Converter={StaticResource DateConverterObj}}"/>
+
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
