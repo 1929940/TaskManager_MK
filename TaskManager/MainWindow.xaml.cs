@@ -26,8 +26,16 @@ namespace TaskManager
         public MainWindow()
         {
             InitializeComponent();
+
             PrepareBind();
+
+            CollectionView View = 
+                (CollectionView)CollectionViewSource.GetDefaultView(Display_ListView.ItemsSource);
+
+            View.Filter = MyFilter;
         }
+
+
         public void PrepareBind()
         {
             List = new ObservableCollection<Task>();
@@ -44,12 +52,57 @@ namespace TaskManager
             addWindow.Show();
         }
 
-        private void Edit_Button_Click(object sender, RoutedEventArgs e)
+        private void Modify_Button_Click(object sender, RoutedEventArgs e)
         {
-            if (!(Display_ListView.SelectedItem is Task tmp)) return;
+            Task tmp = Display_ListView.SelectedItem as Task;
 
             Edit editWindow = new Edit(tmp);
             editWindow.Show();
+        }
+
+        private void Display_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Can we ever unselect an item? Perhaps after deleting
+
+            if (Display_ListView.SelectedItem != null)
+            {
+                Modify_Button.IsEnabled = true;
+            }
+        }
+
+        private void Filter_TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(Display_ListView.ItemsSource).Refresh();
+        }
+
+        public bool MyFilter(object item)
+        {
+            if (String.IsNullOrEmpty(Filter_TextBox.Text)) return true;
+            else
+            {
+                // Searches for match in each of the four columns
+
+                bool DescriptionFilter = ((item as Task).Description.IndexOf(
+                    Filter_TextBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                bool StatusFilter = ((item as Task).Status.ToString().IndexOf(
+                    Filter_TextBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                bool PriorityFilter = ((item as Task).Priority.ToString().IndexOf(
+                    Filter_TextBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                bool DeadlineFilter = ((item as Task).Deadline.ToString().IndexOf(
+                    Filter_TextBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+
+                // If finds any matches, returns true
+
+                return (DescriptionFilter || StatusFilter || PriorityFilter || DeadlineFilter);
+            }
+        }
+
+        private void Task_Header_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Line Clicked");
         }
     }
 }

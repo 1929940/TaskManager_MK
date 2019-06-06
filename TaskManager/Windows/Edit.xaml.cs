@@ -27,18 +27,18 @@ namespace TaskManager.Windows
 
             Description_TextBox.Text = selected.Description;
 
-
             Status_ComboBox.ItemsSource = Enum.GetValues(typeof(Statuses)).Cast<Statuses>();
 
             Status_ComboBox.SelectedItem = selected.Status;
-
 
             Priority_ComboBox.ItemsSource = Enum.GetValues(typeof(Priorities)).Cast<Priorities>();
 
             Priority_ComboBox.SelectedItem = selected.Priority;
 
-            DatePicker.SelectedDate = selected.Deadline;
-
+            if (selected.Deadline != DateTime.MinValue)
+            {
+                DatePicker.SelectedDate = selected.Deadline;
+            }
         }
 
         private void TextChange(object sender, TextChangedEventArgs e)

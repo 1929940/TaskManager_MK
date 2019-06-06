@@ -29,5 +29,7 @@ namespace TaskManager.Windows
             }
             label.Content = counter;
         }
+
+
     }
 }
