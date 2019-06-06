@@ -30,7 +30,7 @@ namespace TaskManager
             PrepareBind();
 
             CollectionView View = 
-                (CollectionView)CollectionViewSource.GetDefaultView(Display_ListView.ItemsSource);
+                (CollectionView)CollectionViewSource.GetDefaultView(Display_DataGrid.ItemsSource);
 
             View.Filter = MyFilter;
         }
@@ -42,29 +42,29 @@ namespace TaskManager
             List.Add(new Task(1, "dlugi teks do 100 znakow", Priorities.Normal, Statuses.InProgress));
             List.Add(new Task(2, "kolejny tekst nie wiem po co ale jest hehe", Priorities.High, Statuses.Completed));
             List.Add(new Task(1, "testujemy date teraz", Priorities.Low, Statuses.New, new DateTime(2019,12,27)));
-            Display_ListView.ItemsSource = List;
+            Display_DataGrid.ItemsSource = List;
 
         }
 
         private void Add_Button_Click(object sender, RoutedEventArgs e)
         {
             Add addWindow = new Add();
-            addWindow.Show();
+            addWindow.ShowDialog();
         }
 
         private void Modify_Button_Click(object sender, RoutedEventArgs e)
         {
-            Task tmp = Display_ListView.SelectedItem as Task;
+            Task tmp = Display_DataGrid.SelectedItem as Task;
 
             Edit editWindow = new Edit(tmp);
-            editWindow.Show();
+            editWindow.ShowDialog();
         }
 
-        private void Display_ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Display_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Can we ever unselect an item? Perhaps after deleting
 
-            if (Display_ListView.SelectedItem != null)
+            if (Display_DataGrid.SelectedItem != null)
             {
                 Modify_Button.IsEnabled = true;
             }
@@ -72,7 +72,7 @@ namespace TaskManager
 
         private void Filter_TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(Display_ListView.ItemsSource).Refresh();
+            CollectionViewSource.GetDefaultView(Display_DataGrid.ItemsSource).Refresh();
         }
 
         public bool MyFilter(object item)
@@ -100,9 +100,5 @@ namespace TaskManager
             }
         }
 
-        private void Task_Header_Click(object sender, RoutedEventArgs e)
-        {
-            System.Diagnostics.Debug.WriteLine("Line Clicked");
-        }
     }
 }

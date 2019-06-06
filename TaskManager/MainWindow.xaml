@@ -36,28 +36,25 @@
         
         <!-- Row 2-->
 
-        <ListView Name="Display_ListView" SelectionChanged="Display_ListView_SelectionChanged"
-                  Grid.Row="2" Margin="0,0,0,5">
-            <ListView.Resources>
+        <DataGrid Name="Display_DataGrid" SelectionChanged="Display_DataGrid_SelectionChanged" 
+                  Grid.Row="2" Margin="0,0,0,5"
+                  AutoGenerateColumns="False" HeadersVisibility="Column" 
+                  IsReadOnly="True" GridLinesVisibility="Horizontal"  
+                  SelectionMode="Single" Background="White">
+            <DataGrid.Resources>
                 <local:DateConverter x:Key="DateConverterObj"/>
-            </ListView.Resources>
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn DisplayMemberBinding="{Binding Description}">
-                            <GridViewColumnHeader Name="Task_Header" Content="Task" Click="Task_Header_Click"/>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Status"
-                                        DisplayMemberBinding="{Binding Status}"/>
-                        <GridViewColumn Header="Priority"
-                                        DisplayMemberBinding="{Binding Priority}"/>
-                        <GridViewColumn Header="Deadline"
-                                        DisplayMemberBinding="{Binding Deadline, StringFormat='yyyy-MM-dd', Converter={StaticResource DateConverterObj}}"/>
-
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Task" Width="*" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Status" MinWidth="80" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Priority" MinWidth="60" Binding="{Binding Priority}"/>
+                <DataGridTextColumn Header="Deadline" MinWidth="80" Binding="{Binding Deadline, StringFormat='yyyy-MM-dd', Converter={StaticResource DateConverterObj}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <!-- Row 3-->
 

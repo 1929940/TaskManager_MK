@@ -44,6 +44,18 @@ namespace TaskManager.Windows
         private void TextChange(object sender, TextChangedEventArgs e)
         {
             DescriptionHelpers.ValidateTextbox(Description_TextBox, WordCount);
+
+            Modify_Button.IsEnabled = (Description_TextBox.Text == String.Empty) ? false : true;
+        }
+
+        private void Modify_Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Cancel_Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
