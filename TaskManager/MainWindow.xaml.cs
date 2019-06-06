@@ -28,6 +28,8 @@ namespace TaskManager
             InitializeComponent();
             PrepareBind();
 
+            System.Diagnostics.Debug.WriteLine(Statuses.wRealizacji);
+
 
         }
         public void PrepareBind()

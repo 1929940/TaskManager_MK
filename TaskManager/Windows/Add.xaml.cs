@@ -23,9 +23,37 @@ namespace TaskManager.Windows
         {
             InitializeComponent();
 
-            Status_ComboBox.ItemsSource = Enum.GetValues(typeof(Priorities)).Cast<Priorities>();
+            Status_ComboBox.ItemsSource = Enum.GetValues(typeof(Statuses)).Cast<Statuses>();
 
-            Status_ComboBox.SelectedItem = Priorities.Normalny;
+            Status_ComboBox.SelectedItem = Statuses.Nowy;
+
+            
+
+            Priority_ComboBox.ItemsSource = Enum.GetValues(typeof(Priorities)).Cast<Priorities>();
+
+            Priority_ComboBox.SelectedItem = Priorities.Normalny;
+        }
+
+        private void TextChange(object sender, TextChangedEventArgs e)
+        {
+            int counter = 0;
+
+            counter = 1000 - Description_TextBox.Text.Length;
+
+            if (counter == 0)
+            {
+                WordCount.Opacity = 1;
+                WordCount.Foreground = Brushes.Red;
+
+                System.Media.SystemSounds.Beep.Play();
+            }
+            else
+            {
+                WordCount.Opacity = 0.3;
+                WordCount.Foreground = Brushes.Black;
+            }
+            WordCount.Content = counter;
+
         }
     }
 }

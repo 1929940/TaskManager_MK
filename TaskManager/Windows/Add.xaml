@@ -31,8 +31,9 @@
         <Label Content="Description:"
                Grid.Row="1" Grid.Column="0"/>
 
-        <RichTextBox Name="Description_RichTextBox"
-                     Grid.Row="1" Grid.Column="1"/>
+        <TextBox Name="Description_TextBox" 
+                 TextWrapping="Wrap" MaxLength="1000" VerticalScrollBarVisibility="Visible"
+                     Grid.Row="1" Grid.Column="1" TextChanged="TextChange"/>
 
         <!-- Row 2-->
 
