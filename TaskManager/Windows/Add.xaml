@@ -1,0 +1,75 @@
+﻿<Window x:Class="TaskManager.Windows.Add"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager.Windows"
+        mc:Ignorable="d"
+        Title="Add" Height="300" Width="500">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Row 0-->
+
+        <Label Content="Add Task" FontSize="36" HorizontalAlignment="Center"
+               Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Margin="0,0,0,5"/>
+
+        <!-- Row 1-->
+
+        <Label Content="Description:"
+               Grid.Row="1" Grid.Column="0"/>
+
+        <RichTextBox Name="Description_RichTextBox"
+                     Grid.Row="1" Grid.Column="1"/>
+
+        <!-- Row 2-->
+
+        <Label Name="WordCount" Content="1000" 
+               Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Right"
+               FontSize="10" FontStyle="Italic" Background="White" Opacity="0.3"/>
+
+        <!-- Row 3-->
+
+        <Label Content="Status:" Margin="0,0,0,5"
+               Grid.Row="3" Grid.Column="0"/>
+        <ComboBox Margin="0,0,0,5" Name="Status_ComboBox"
+            Grid.Row="3" Grid.Column="1" />
+
+        <!-- Row 4-->
+
+        <Label Content="Priority:" Margin="0,0,0,5"
+               Grid.Row="4" Grid.Column="0" />
+        <ComboBox Margin="0,0,0,5" Name="Priority_ComboBox"
+            Grid.Row="4" Grid.Column="1" />
+
+        <!-- Row 5-->
+
+        <Label Content="Deadline:" Margin="0,0,0,5"
+               Grid.Row="5" Grid.Column="0" />
+        <DatePicker Margin="0,0,0,5"
+            Grid.Row="5" Grid.Column="1"/>
+
+        <!-- Row 6-->
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                    Grid.Row="6" Grid.ColumnSpan="2" Grid.Column="0">
+            <Button Content="Add" Width="60" Margin="5,0,0,0"/>
+            <Button Content="Cancel" Width="60" Margin="5,0,0,0"/>
+        </StackPanel>
+
+
+
+    </Grid>
+</Window>

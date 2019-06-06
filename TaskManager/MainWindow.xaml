@@ -1,0 +1,59 @@
+﻿<Window x:Class="TaskManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaskManager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" FontFamily="Franklin Gothic Medium">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- Row 0-->
+
+        <Label Content="Text Manger" FontSize="36" HorizontalAlignment="Center" 
+               Grid.Row="0" Margin="0,0,0,5" />
+        
+        <!-- Row 1-->
+
+        <TextBox Name="Filter_TextBox" HorizontalAlignment="Right" Text="Filter" 
+                 Grid.Row="1" Margin="0,0,0,5"
+                 Width="100" Height="23"/>
+        
+        <!-- Row 2-->
+
+        <ListView Name="Display_ListView"
+                  Grid.Row="2" Margin="0,0,0,5">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Task"
+                                        DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Priority"
+                                        DisplayMemberBinding="{Binding Priority}"/>
+                        <GridViewColumn Header="Deadline"
+                                        DisplayMemberBinding="{Binding Deadline}"/>
+                        <GridViewColumn Header="Status"
+                                        DisplayMemberBinding="{Binding Status}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Row 3-->
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                    Grid.Row="3">
+            <Button Content="Add" Name="Add_Button" Width="60" Margin="5,0,0,0" Click="Add_Button_Click"/>
+            <Button Content="Edit" Name="Edit_Button" Width="60" Margin="5,0,0,0" Click="Edit_Button_Click"/>
+            <Button Content="Remove" Name="Remove_Button" Width="60" Margin="5,0,0,0"/>
+        </StackPanel>
+
+
+    </Grid>
+</Window>
