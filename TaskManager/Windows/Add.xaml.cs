@@ -12,6 +12,7 @@ using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManager.Models;
 
 namespace TaskManager.Windows
 {
@@ -37,7 +38,17 @@ namespace TaskManager.Windows
 
         private void Create_Button_Click(object sender, RoutedEventArgs e)
         {
+            string desc = Description_TextBox.Text;
+            string status = Status_ComboBox.Text;
+            string priority = Priority_ComboBox.Text;
+            DateTime? deadline = DatePicker.SelectedDate;
 
+
+            TaskManagerDB.AddTask(desc, status, priority, deadline);
+
+            
+
+            this.Close();
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)

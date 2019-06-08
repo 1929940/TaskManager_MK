@@ -13,13 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TaskManager.Models;
 using TaskManager.Windows;
 
 namespace TaskManager
 {
     public partial class MainWindow : Window
     {
-        private ObservableCollection<Task> List;
+        //private ObservableCollection<Task> List;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,16 +36,8 @@ namespace TaskManager
 
         public void PrepareBind()
         {
-            List = new ObservableCollection<Task>();
-            List.Add(new Task(1, "dlugi teks do 100 znakow", "Normal", "In Progress"));
-            List.Add(new Task(2, "kolejny tekst nie wiem po co ale jest hehe", "High", "Completed"));
-            List.Add(new Task(3, "testujemy date teraz", "Low", "New", new DateTime(2019,12,27)));
-            List.Add(new Task(4, "Lets play a game. I am here, coding, and its hot outside. Why am i doing this to myself?", "High", "In Progress", DateTime.MinValue));
-            Display_DataGrid.ItemsSource = List;
-
+            Display_DataGrid.ItemsSource = TaskManagerDB.GetTasks();
         }
-
-
 
         #region Filter
 
@@ -96,6 +89,8 @@ namespace TaskManager
         {
             Add addWindow = new Add();
             addWindow.ShowDialog();
+
+            PrepareBind();
         }
 
         private void Modify_Button_Click(object sender, RoutedEventArgs e)
@@ -105,7 +100,10 @@ namespace TaskManager
 
         private void Remove_Button_Click(object sender, RoutedEventArgs e)
         {
+            Task tmp = Display_DataGrid.SelectedItem as Task;
 
+            TaskManagerDB.RemoveTask(tmp.Id);
+            PrepareBind();
         }
 
         private void Modify()
@@ -114,6 +112,8 @@ namespace TaskManager
 
             Edit editWindow = new Edit(tmp);
             editWindow.ShowDialog();
+
+            PrepareBind();
         }
 
         private void Display_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

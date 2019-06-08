@@ -39,7 +39,7 @@
         <DataGrid Name="Display_DataGrid" SelectionChanged="Display_DataGrid_SelectionChanged" MouseDoubleClick="Display_DataGrid_MouseDoubleClick"
                   Grid.Row="2" Margin="0,0,0,5"
                   AutoGenerateColumns="False" HeadersVisibility="Column" 
-                  IsReadOnly="True" GridLinesVisibility="Horizontal"  
+                  IsReadOnly="True" GridLinesVisibility="Vertical"  
                   SelectionMode="Single" Background="White">
             <DataGrid.Resources>
                 <local:DateConverter x:Key="DateConverterObj"/>

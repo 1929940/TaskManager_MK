@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TaskManager.Models;
 
 namespace TaskManager.Windows
 {
@@ -19,9 +20,13 @@ namespace TaskManager.Windows
     /// </summary>
     public partial class Edit : Window
     {
+        int id;
+
         public Edit(Task selected)
         {
             InitializeComponent();
+
+            id = selected.Id;
             
             //Sets initial values of controls based on the selected item
 
@@ -57,6 +62,7 @@ namespace TaskManager.Windows
             {
                 DatePicker.SelectedDate = selected.Deadline;
             }
+
         }
 
         private void TextChange(object sender, TextChangedEventArgs e)
@@ -68,7 +74,14 @@ namespace TaskManager.Windows
 
         private void Modify_Button_Click(object sender, RoutedEventArgs e)
         {
+            string desc = Description_TextBox.Text;
+            string status = Status_ComboBox.Text;
+            string priority = Priority_ComboBox.Text;
+            DateTime? deadline = DatePicker.SelectedDate;
 
+            TaskManagerDB.ModifyTask(id, desc, status, priority, deadline);
+
+            this.Close();
         }
 
         private void Cancel_Button_Click(object sender, RoutedEventArgs e)
