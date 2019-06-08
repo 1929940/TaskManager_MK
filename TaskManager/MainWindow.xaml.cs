@@ -10,12 +10,11 @@ namespace TaskManager
 {
     public partial class MainWindow : Window
     {
-        //private ObservableCollection<Task> List;
         public MainWindow()
         {
             InitializeComponent();
 
-            PrepareBind();
+            PrepareDataGridBinding();
 
             CollectionView View = 
                 (CollectionView)CollectionViewSource.GetDefaultView(Display_DataGrid.ItemsSource);
@@ -24,7 +23,7 @@ namespace TaskManager
         }
 
 
-        public void PrepareBind()
+        public void PrepareDataGridBinding()
         {
             Display_DataGrid.ItemsSource = TaskManagerDB.GetTasks();
         }
@@ -35,9 +34,8 @@ namespace TaskManager
         {
             CollectionViewSource.GetDefaultView(Display_DataGrid.ItemsSource).Refresh();
 
-            // Filter allows to deselect a row
-            // When the selected row is deselected by filter
-            // Block access to buttons that require a selected item
+            // Filter allows one to deselect a row
+            // When that happens, the buttons get disabled
 
             if (Display_DataGrid.SelectedItem == null)
             {
@@ -65,7 +63,7 @@ namespace TaskManager
                 bool DeadlineFilter = ((item as Task).Deadline.ToString().IndexOf(
                     Filter_TextBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
 
-                // If finds any matches, returns true
+                // If the filtered phrase matches any of the columns contents, returns true
 
                 return (DescriptionFilter || StatusFilter || PriorityFilter || DeadlineFilter);
             }
@@ -80,7 +78,7 @@ namespace TaskManager
             Add addWindow = new Add();
             addWindow.ShowDialog();
 
-            PrepareBind();
+            PrepareDataGridBinding();
         }
 
         private void Modify_Button_Click(object sender, RoutedEventArgs e)
@@ -92,8 +90,22 @@ namespace TaskManager
         {
             Task tmp = Display_DataGrid.SelectedItem as Task;
 
+            int index = Display_DataGrid.SelectedIndex;
+
             TaskManagerDB.RemoveTask(tmp.Id);
-            PrepareBind();
+
+            PrepareDataGridBinding();
+
+            // After removing a row, another one is selected
+            // If there are none to be selected, buttons are disabled
+
+            Display_DataGrid.SelectedIndex = index -1;
+
+            if(Display_DataGrid.SelectedItem == null)
+            {
+                Modify_Button.IsEnabled = false;
+                Remove_Button.IsEnabled = false;
+            }
         }
 
         private void Modify()
@@ -103,12 +115,12 @@ namespace TaskManager
             Edit editWindow = new Edit(tmp);
             editWindow.ShowDialog();
 
-            PrepareBind();
+            PrepareDataGridBinding();
         }
 
         private void Display_DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Can we ever unselect an item? Perhaps after deleting
+            // Buttons are disabled until a row is selected
 
             if (Display_DataGrid.SelectedItem != null)
             {

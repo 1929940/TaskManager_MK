@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Collections.ObjectModel;
 
@@ -51,7 +47,6 @@ namespace TaskManager.Models
                     }
                     else
                     {
-                        //System.Diagnostics.Debug.WriteLine("The DATE from DB is: {0}", rdr["Deadline"]);
                         output.Add(new Task((int)rdr["Id"], (string)rdr["TaskDesc"], (string)rdr["Priority"], (string)rdr["Status"], (DateTime)rdr["Deadline"]));
                     }
                 }
@@ -82,7 +77,7 @@ namespace TaskManager.Models
                 cmd.Parameters.Add(new SqlParameter("@Status", status));
                 cmd.Parameters.Add(new SqlParameter("@Priority", priority));
 
-                // Cannot has into SqlParameter Construction Null, has to be DBNull
+                // SqlParameter does not accept plain Null, have to use DBNull
 
                 var tmp = (deadline == null) ? new SqlParameter("@Deadline", DBNull.Value) : new SqlParameter("Deadline", deadline);
 
@@ -117,7 +112,6 @@ namespace TaskManager.Models
             finally
             {
                 if (cnn != null) cnn.Close();
-
             }
         }
 
@@ -140,7 +134,7 @@ namespace TaskManager.Models
                 cmd.Parameters.Add(new SqlParameter("@Status", status));
                 cmd.Parameters.Add(new SqlParameter("@Priority", priority));
 
-                // Cannot has into SqlParameter Construction Null, has to be DBNull
+                // SqlParameter does not accept plain Null, have to use DBNull
 
                 var tmp = (deadline == null) ? new SqlParameter("@Deadline", DBNull.Value) : new SqlParameter("Deadline", deadline);
 

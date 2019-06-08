@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace TaskManager
 {
     public class DateConverter : IValueConverter
     {
+        //Whenever the Deadline Date is set to null, 
+        //it gets displayed in the datagrid as DateTime.MinValue
+        //This ensures 'Empty' date fields, stay empty
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is DateTime)

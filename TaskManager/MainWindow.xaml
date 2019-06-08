@@ -27,8 +27,7 @@
             <TextBox Name="Filter_TextBox" TextChanged="Filter_TextBox_TextChanged"
                  Grid.Row="1" Margin="0,0,0,5"
                  Width="100" Height="23"/>
-
-
+            
         </StackPanel>
         
 
