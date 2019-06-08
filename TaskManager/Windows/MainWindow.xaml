@@ -36,7 +36,7 @@
         <!-- Row 2-->
 
         <DataGrid Name="Display_DataGrid" SelectionChanged="Display_DataGrid_SelectionChanged" MouseDoubleClick="Display_DataGrid_MouseDoubleClick"
-                  Grid.Row="2" Margin="0,0,0,5"
+                  Grid.Row="2" Margin="0,0,0,5" AlternatingRowBackground="WhiteSmoke"
                   AutoGenerateColumns="False" HeadersVisibility="Column" 
                   IsReadOnly="True" GridLinesVisibility="Vertical"  
                   SelectionMode="Single" Background="White">
