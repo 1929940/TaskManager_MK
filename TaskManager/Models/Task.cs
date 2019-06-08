@@ -10,19 +10,19 @@ namespace TaskManager
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public Priorities Priority { get; set; }
-        public Statuses Status { get; set; }
+        public string Priority { get; set; }
+        public string Status { get; set; }
         public DateTime Deadline { get; set; }
 
 
-        public Task(int id, string description, Priorities priority, Statuses status)
+        public Task(int id, string description, string priority, string status)
         {
             Id = id;
             Description = description;
             Priority = priority;
             Status = status;
         }
-        public Task(int id, string description, Priorities priority, Statuses status, DateTime deadline) : this(id, description, priority, status)
+        public Task(int id, string description, string priority, string status, DateTime deadline) : this(id, description, priority, status)
         {
             Deadline = deadline;
         }

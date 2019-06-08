@@ -23,17 +23,35 @@ namespace TaskManager.Windows
         {
             InitializeComponent();
             
-
+            //Sets initial values of controls based on the selected item
 
             Description_TextBox.Text = selected.Description;
 
-            Status_ComboBox.ItemsSource = Enum.GetValues(typeof(Statuses)).Cast<Statuses>();
+            switch (selected.Status)
+            {
+                case "New":
+                    Status_ComboBox.SelectedIndex = 0;
+                    break;
+                case "In Progress":
+                    Status_ComboBox.SelectedIndex = 1;
+                    break;
+                case "Completed":
+                    Status_ComboBox.SelectedIndex = 2;
+                    break;
+            }
 
-            Status_ComboBox.SelectedItem = selected.Status;
-
-            Priority_ComboBox.ItemsSource = Enum.GetValues(typeof(Priorities)).Cast<Priorities>();
-
-            Priority_ComboBox.SelectedItem = selected.Priority;
+            switch (selected.Priority)
+            {
+                case "Low":
+                    Priority_ComboBox.SelectedIndex = 0;
+                    break;
+                case "Normal":
+                    Priority_ComboBox.SelectedIndex = 1;
+                    break;
+                case "High":
+                    Priority_ComboBox.SelectedIndex = 2;
+                    break;
+            }
 
             if (selected.Deadline != DateTime.MinValue)
             {

@@ -24,15 +24,6 @@ namespace TaskManager.Windows
         {
             InitializeComponent();
 
-            Status_ComboBox.ItemsSource = Enum.GetValues(typeof(Statuses)).Cast<Statuses>();
-
-            Status_ComboBox.SelectedItem = Statuses.New;
-
-
-
-            Priority_ComboBox.ItemsSource = Enum.GetValues(typeof(Priorities)).Cast<Priorities>();
-
-            Priority_ComboBox.SelectedItem = Priorities.Normal;
         }
 
         private void TextChange(object sender, TextChangedEventArgs e)
