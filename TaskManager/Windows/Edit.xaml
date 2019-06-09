@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager.Windows"
         mc:Ignorable="d"
-        Title="Add" Height="308" Width="500" FontFamily="Franklin Gothic Medium">
+        Title="Add" Height="331" Width="500">
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>

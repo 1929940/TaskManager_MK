@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\DateConverter.cs" />
+    <Compile Include="Models\ReSorter.cs" />
     <Compile Include="Models\TaskManagerDB.cs" />
     <Compile Include="Windows\Add.xaml.cs">
       <DependentUpon>Add.xaml</DependentUpon>

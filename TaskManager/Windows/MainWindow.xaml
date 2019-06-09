@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaskManager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontFamily="Franklin Gothic Medium">
+        Title="MainWindow" Height="450" Width="800">
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,26 +29,40 @@
                  Width="100" Height="23"/>
             
         </StackPanel>
-        
-
 
         
         <!-- Row 2-->
 
-        <DataGrid Name="Display_DataGrid" SelectionChanged="Display_DataGrid_SelectionChanged" MouseDoubleClick="Display_DataGrid_MouseDoubleClick"
+        <DataGrid Name="Display_DataGrid" SelectionChanged="Display_DataGrid_SelectionChanged"
                   Grid.Row="2" Margin="0,0,0,5" AlternatingRowBackground="WhiteSmoke"
-                  AutoGenerateColumns="False" HeadersVisibility="Column" 
-                  IsReadOnly="True" GridLinesVisibility="Vertical"  
+                  AutoGenerateColumns="False" HeadersVisibility="Column"
+                  IsReadOnly="True" GridLinesVisibility="None"  
                   SelectionMode="Single" Background="White">
             <DataGrid.Resources>
                 <local:DateConverter x:Key="DateConverterObj"/>
                 <Style TargetType="{x:Type DataGridCell}">
                     <Setter Property="BorderThickness" Value="0" />
-                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                </Style>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <EventSetter Event="PreviewMouseDoubleClick" Handler="Display_DataGrid_MouseDoubleClick"/>
                 </Style>
             </DataGrid.Resources>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="MenuAdd" Header="Add" Click="Add_Button_Click"/>
+                    <MenuItem Name="MenuModify" Header="Modify" Click="Modify_Button_Click"/>
+                    <MenuItem Name="MenuRemove" Header="Remove" Click="Remove_Button_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Task" Width="*" Binding="{Binding Description}"/>
+                <DataGridTextColumn Header="Task" Width="*" Binding="{Binding Description}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Margin" Value="5,2,25,2"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Status" MinWidth="80" Binding="{Binding Status}"/>
                 <DataGridTextColumn Header="Priority" MinWidth="60" Binding="{Binding Priority}"/>
                 <DataGridTextColumn Header="Deadline" MinWidth="80" Binding="{Binding Deadline, StringFormat='yyyy-MM-dd', Converter={StaticResource DateConverterObj}}"/>

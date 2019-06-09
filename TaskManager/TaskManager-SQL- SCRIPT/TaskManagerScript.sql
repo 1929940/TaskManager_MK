@@ -61,26 +61,47 @@ GO
   
 
 INSERT INTO TaskManagerDB(TaskDesc, Status, Priority, Deadline)
-	VALUES('Dancing in the rain forever and a day', 'In Progress', 'Normal', '2019-07-08');
+	VALUES('Dance in the rain forever and a day', 'In Progress', 'Normal', '2019-07-08');
 
 INSERT INTO TaskManagerDB(TaskDesc, Status, Priority, Deadline)
-	VALUES('Sewing a sweater for my grandchildren', 'In Progress', 'High', '2019-07-03');
+	VALUES('Sew a sweater for my grandchildren', 'In Progress', 'High', '2019-07-03');
 
 INSERT INTO TaskManagerDB(TaskDesc, Status, Priority)
-	VALUES('Reading the Song of Ice and Fire books', 'New', 'Low');
+	VALUES('Read the Song of Ice and Fire books', 'New', 'Low');
 
 INSERT INTO TaskManagerDB(TaskDesc, Status, Priority)
-	VALUES('Losing some belly fat', 'New', 'Normal');
+	VALUES('Lose some belly fat', 'New', 'Normal');
 
 INSERT INTO TaskManagerDB(TaskDesc, Status, Priority, Deadline)
-	VALUES('Eating that one tasty kebab with double meat', 'Completed', 'High', GETDATE());
+	VALUES('Eat that one tasty kebab with double meat', 'Completed', 'High', GETDATE());
 
 INSERT INTO TaskManagerDB(TaskDesc, Status, Priority, Deadline)
-	VALUES('Enjoying the sun, the wind, generally, the weather', 'Completed', 'High', GETDATE());
+	VALUES('Enjoy the sun, the wind, generally, the weather', 'Completed', 'High', GETDATE());
 
 INSERT INTO TaskManagerDB(TaskDesc, Status, Priority, Deadline)
 	VALUES('This one is going to be long, very long, I am talking the longest of the longs but not that long. I am not crazy, typing 1000 characters here would take a while, and what if i write 1001? No way, not doing it. However, this should be enough to see how a longer description is displayed', 
 	'Completed', 'High', GETDATE());
+
+INSERT INTO TaskManagerDB(TaskDesc, Status, Priority)
+	VALUES('Randomly...', 'New', 'High');
+
+INSERT INTO TaskManagerDB(TaskDesc, Status, Priority)
+	VALUES('Randomly Generated...', 'New', 'High');
+
+INSERT INTO TaskManagerDB(TaskDesc, Status, Priority)
+	VALUES('Randomly Generated Dummy...', 'New', 'High');
+
+INSERT INTO TaskManagerDB(TaskDesc, Status, Priority)
+	VALUES('Randomly Generated Dummy data...', 'New', 'High');
+
+INSERT INTO TaskManagerDB(TaskDesc, Status, Priority)
+	VALUES('Randomly Generated Dummy data fills...', 'New', 'High');
+
+INSERT INTO TaskManagerDB(TaskDesc, Status, Priority)
+	VALUES('Randomly Generated Dummy data fills the...', 'New', 'High');
+
+INSERT INTO TaskManagerDB(TaskDesc, Status, Priority)
+	VALUES('Randomly Generated Dummy data fills the rest...', 'New', 'High');
 
 --Randomly Generated Data
 
